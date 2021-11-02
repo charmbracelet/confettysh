@@ -30,4 +30,4 @@ require (
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 )
 
-replace github.com/charmbracelet/wish => ../../charm/wish
+replace github.com/charmbracelet/wish => ../wish
