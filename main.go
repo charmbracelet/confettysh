@@ -43,9 +43,15 @@ func main() {
 
 func teaHandler() func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	return func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
+		if s.RawCommand() != "" {
+			fmt.Println("trying to execute commands, skipping")
+			s.Exit(1)
+			return nil, nil
+		}
 		_, _, active := s.Pty()
 		if !active {
 			fmt.Println("no active terminal, skipping")
+			s.Exit(1)
 			return nil, nil
 		}
 
