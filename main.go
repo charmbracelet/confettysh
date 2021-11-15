@@ -51,7 +51,7 @@ func main() {
 
 func teaHandler(cfg Config) func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	return func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-		pty, _, active := s.Pty()
+		_, _, active := s.Pty()
 		if !active {
 			fmt.Println("no active terminal, skipping")
 			return nil, nil
@@ -60,9 +60,9 @@ func teaHandler(cfg Config) func(s ssh.Session) (tea.Model, []tea.ProgramOption)
 		var m tea.Model
 		switch cfg.Effect {
 		case "confetti":
-			m = confetti.InitialModelWithSize(pty.Window.Width, pty.Window.Height)
+			m = confetti.InitialModel()
 		case "fireworks":
-			m = fireworks.InitialModelWithSize(pty.Window.Width, pty.Window.Height)
+			m = fireworks.InitialModel()
 		default:
 			log.Fatalf("invalid effect %q", cfg.Effect)
 		}
