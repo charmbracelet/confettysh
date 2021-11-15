@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/caarlos0/promwish"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/wish"
 	bm "github.com/charmbracelet/wish/bubbletea"
@@ -15,6 +16,7 @@ import (
 )
 
 var port = flag.Int("port", 2222, "port to listen on")
+var metricsPort = flag.Int("metrics-port", 9222, "port to listen on")
 var effect = flag.String("effect", "confetti", "effect to use [confetti|fireworks]")
 
 func main() {
@@ -26,6 +28,7 @@ func main() {
 		wish.WithMiddleware(
 			bm.Middleware(teaHandler()),
 			lm.Middleware(),
+			promwish.Middleware(fmt.Sprintf("0.0.0.0:%d", *metricsPort)),
 		),
 	)
 	if err != nil {
