@@ -29,6 +29,7 @@ func main() {
 			bm.Middleware(teaHandler()),
 			lm.Middleware(),
 			promwish.Middleware(fmt.Sprintf("0.0.0.0:%d", *metricsPort)),
+			Readonly(),
 		),
 	)
 	if err != nil {
@@ -66,5 +67,24 @@ func teaHandler() func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 		}
 
 		return m, []tea.ProgramOption{tea.WithAltScreen()}
+	}
+}
+
+func Readonly() wish.Middleware {
+	return func(sh ssh.Handler) ssh.Handler {
+		return func(s ssh.Session) {
+			if s.RawCommand() != "" {
+				fmt.Println("trying to execute commands, skipping")
+				s.Exit(1)
+				return
+			}
+			_, _, active := s.Pty()
+			if !active {
+				fmt.Println("no active terminal, skipping")
+				s.Exit(1)
+				return
+			}
+			sh(s)
+		}
 	}
 }
