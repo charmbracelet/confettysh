@@ -1,10 +1,10 @@
-module github.com/caarlos0/confettysh
+module github.com/charmbracelet/confettysh
 
 go 1.17
 
 require (
-	github.com/caarlos0/promwish v0.0.0-00010101000000-000000000000
 	github.com/charmbracelet/bubbletea v0.19.1
+	github.com/charmbracelet/promwish v0.0.0-00010101000000-000000000000
 	github.com/charmbracelet/wish v0.0.0-00010101000000-000000000000
 	github.com/gliderlabs/ssh v0.3.3
 	github.com/maaslalani/confetty v0.0.0-20211105043600-c1f984adc7d6
@@ -41,4 +41,4 @@ require (
 
 replace github.com/charmbracelet/wish => ../wish
 
-replace github.com/caarlos0/promwish => ../promwish
+replace github.com/charmbracelet/promwish => ../promwish

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/caarlos0/promwish"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/promwish"
 	"github.com/charmbracelet/wish"
 	"github.com/charmbracelet/wish/accesscontrol"
 	"github.com/charmbracelet/wish/activeterm"
