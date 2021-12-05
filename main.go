@@ -9,7 +9,9 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/promwish"
 	"github.com/charmbracelet/wish"
 	"github.com/charmbracelet/wish/accesscontrol"
@@ -37,19 +39,18 @@ func main() {
 	log.Println("Starting metrics server on", address)
 
 	if err := reverseproxy(&Config{
+		Listen:  "0.0.0.0",
+		Port:    *port,
+		Factory: factory,
 		Endpoints: []Endpoint{
 			{
-				Name:        "confetti",
-				Address:     fmt.Sprintf("0.0.0.0:%d", -1),
-				HostKeyPath: ".ssh/confetti",
+				Name: "confetti",
 				Handler: func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 					return confetti.InitialModel(), []tea.ProgramOption{tea.WithAltScreen()}
 				},
 			},
 			{
-				Name:        "fireworks",
-				Address:     fmt.Sprintf("0.0.0.0:%d", *port+1),
-				HostKeyPath: ".ssh/fireworks",
+				Name: "fireworks",
 				Handler: func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 					return fireworks.InitialModel(), []tea.ProgramOption{tea.WithAltScreen()}
 				},
@@ -61,32 +62,38 @@ func main() {
 }
 
 type Endpoint struct {
-	Name        string
-	Address     string
-	HostKeyPath string
-	Handler     bm.BubbleTeaHandler
+	Name    string
+	Address string
+	Handler bm.BubbleTeaHandler
 }
 
 type Config struct {
+	Listen    string
+	Port      int
 	Endpoints []Endpoint
+	Factory   func(Endpoint) (*ssh.Server, error)
 }
 
 func reverseproxy(config *Config) error {
 	var closes []func() error
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+	for i := range config.Endpoints {
+		if config.Endpoints[i].Address == "" {
+			config.Endpoints[i].Address = fmt.Sprintf("%s:%d", config.Listen, config.Port+1+i)
+		}
+	}
+	config.Endpoints = append([]Endpoint{
+		{
+			Name:    "listing",
+			Address: fmt.Sprintf("%s:%d", config.Listen, config.Port),
+			Handler: func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
+				return newListing(config.Endpoints), []tea.ProgramOption{tea.WithAltScreen()}
+			},
+		},
+	}, config.Endpoints...)
 	for _, endpoint := range config.Endpoints {
-		s, err := wish.NewServer(
-			wish.WithAddress(endpoint.Address),
-			wish.WithHostKeyPath(endpoint.HostKeyPath),
-			wish.WithMiddleware(
-				bm.Middleware(endpoint.Handler),
-				lm.Middleware(),
-				promwish.MiddlewareRegistry(prometheus.DefaultRegisterer, endpoint.Name),
-				accesscontrol.Middleware(),
-				activeterm.Middleware(),
-			),
-		)
+		s, err := config.Factory(endpoint)
 		if err != nil {
 			if cerr := closeAll(closes); cerr != nil {
 				return multierror.Append(err, cerr)
@@ -110,4 +117,61 @@ func closeAll(closes []func() error) error {
 		}
 	}
 	return result
+}
+
+func factory(endpoint Endpoint) (*ssh.Server, error) {
+	return wish.NewServer(
+		wish.WithAddress(endpoint.Address),
+		wish.WithMiddleware(
+			bm.Middleware(endpoint.Handler),
+			lm.Middleware(),
+			promwish.MiddlewareRegistry(prometheus.DefaultRegisterer, endpoint.Name),
+			accesscontrol.Middleware(),
+			activeterm.Middleware(),
+		),
+	)
+}
+
+var docStyle = lipgloss.NewStyle().Margin(1, 2)
+
+func newListing(endpoints []Endpoint) tea.Model {
+	var items []list.Item
+	for _, endpoint := range endpoints {
+		items = append(items, endpoint)
+	}
+	l := list.NewModel(items, list.NewDefaultDelegate(), 0, 0)
+	l.Title = "Directory Listing"
+	return model{l}
+}
+
+type model struct {
+	list list.Model
+}
+
+func (i Endpoint) Title() string       { return i.Name }
+func (i Endpoint) Description() string { return fmt.Sprintf("ssh://%s", i.Address) }
+func (i Endpoint) FilterValue() string { return i.Name }
+
+func (m model) Init() tea.Cmd {
+	return nil
+}
+
+func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	switch msg := msg.(type) {
+	case tea.KeyMsg:
+		if msg.String() == "ctrl+c" {
+			return m, nil
+		}
+	case tea.WindowSizeMsg:
+		top, right, bottom, left := docStyle.GetMargin()
+		m.list.SetSize(msg.Width-left-right, msg.Height-top-bottom)
+	}
+
+	var cmd tea.Cmd
+	m.list, cmd = m.list.Update(msg)
+	return m, cmd
+}
+
+func (m model) View() string {
+	return docStyle.Render(m.list.View())
 }
