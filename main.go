@@ -4,6 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/promwish"
@@ -13,8 +17,11 @@ import (
 	bm "github.com/charmbracelet/wish/bubbletea"
 	lm "github.com/charmbracelet/wish/logging"
 	"github.com/gliderlabs/ssh"
+	"github.com/hashicorp/go-multierror"
 	"github.com/maaslalani/confetty/confetti"
 	"github.com/maaslalani/confetty/fireworks"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var port = flag.Int("port", 2222, "port to listen on")
@@ -24,51 +31,83 @@ var effect = flag.String("effect", "confetti", "effect to use [confetti|firework
 func main() {
 	flag.Parse()
 
-	s, err := wish.NewServer(
-		wish.WithAddress(fmt.Sprintf("0.0.0.0:%d", *port)),
-		wish.WithHostKeyPath(".ssh/confettysh"),
-		wish.WithMiddleware(
-			bm.Middleware(teaHandler()),
-			lm.Middleware(),
-			promwish.Middleware(fmt.Sprintf("0.0.0.0:%d", *metricsPort)),
-			accesscontrol.Middleware(),
-			activeterm.Middleware(),
-		),
-	)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	log.Printf("Starting SSH server on 0.0.0.0:%d", *port)
-	err = s.ListenAndServe()
-	if err != nil {
-		log.Fatalln(err)
+	http.Handle("/metrics", promhttp.Handler())
+	address := fmt.Sprintf("http://0.0.0.0:%d", *metricsPort)
+	go http.ListenAndServe(address, nil)
+	log.Println("Starting metrics server on", address)
+
+	if err := reverseproxy(&Config{
+		Endpoints: []Endpoint{
+			{
+				Name:        "confetti",
+				Address:     fmt.Sprintf("0.0.0.0:%d", -1),
+				HostKeyPath: ".ssh/confetti",
+				Handler: func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
+					return confetti.InitialModel(), []tea.ProgramOption{tea.WithAltScreen()}
+				},
+			},
+			{
+				Name:        "fireworks",
+				Address:     fmt.Sprintf("0.0.0.0:%d", *port+1),
+				HostKeyPath: ".ssh/fireworks",
+				Handler: func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
+					return fireworks.InitialModel(), []tea.ProgramOption{tea.WithAltScreen()}
+				},
+			},
+		},
+	}); err != nil {
+		log.Fatal(err)
 	}
 }
 
-func teaHandler() func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-	return func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-		if s.RawCommand() != "" {
-			fmt.Println("trying to execute commands, skipping")
-			s.Exit(1)
-			return nil, nil
-		}
-		_, _, active := s.Pty()
-		if !active {
-			fmt.Println("no active terminal, skipping")
-			s.Exit(1)
-			return nil, nil
-		}
+type Endpoint struct {
+	Name        string
+	Address     string
+	HostKeyPath string
+	Handler     bm.BubbleTeaHandler
+}
 
-		var m tea.Model
-		switch *effect {
-		case "confetti":
-			m = confetti.InitialModel()
-		case "fireworks":
-			m = fireworks.InitialModel()
-		default:
-			log.Fatalf("invalid effect %q", *effect)
-		}
+type Config struct {
+	Endpoints []Endpoint
+}
 
-		return m, []tea.ProgramOption{tea.WithAltScreen()}
+func reverseproxy(config *Config) error {
+	var closes []func() error
+	done := make(chan os.Signal, 1)
+	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+	for _, endpoint := range config.Endpoints {
+		s, err := wish.NewServer(
+			wish.WithAddress(endpoint.Address),
+			wish.WithHostKeyPath(endpoint.HostKeyPath),
+			wish.WithMiddleware(
+				bm.Middleware(endpoint.Handler),
+				lm.Middleware(),
+				promwish.MiddlewareRegistry(prometheus.DefaultRegisterer, endpoint.Name),
+				accesscontrol.Middleware(),
+				activeterm.Middleware(),
+			),
+		)
+		if err != nil {
+			if cerr := closeAll(closes); cerr != nil {
+				return multierror.Append(err, cerr)
+			}
+			return err
+		}
+		log.Printf("Starting SSH server for %s on ssh://%s", endpoint.Name, endpoint.Address)
+		go s.ListenAndServe()
+		closes = append(closes, s.Close)
 	}
+	<-done
+	log.Print("Stopping SSH servers")
+	return closeAll(closes)
+}
+
+func closeAll(closes []func() error) error {
+	var result error
+	for _, close := range closes {
+		if err := close(); err != nil {
+			result = multierror.Append(result, err)
+		}
+	}
+	return result
 }
