@@ -4,6 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/promwish"
@@ -30,7 +33,7 @@ func main() {
 		wish.WithMiddleware(
 			bm.Middleware(teaHandler()),
 			lm.Middleware(),
-			promwish.Middleware(fmt.Sprintf("0.0.0.0:%d", *metricsPort)),
+			promwish.Middleware(fmt.Sprintf("0.0.0.0:%d", *metricsPort), *effect),
 			accesscontrol.Middleware(),
 			activeterm.Middleware(),
 		),
@@ -39,26 +42,21 @@ func main() {
 		log.Fatalln(err)
 	}
 	log.Printf("Starting SSH server on 0.0.0.0:%d", *port)
-	err = s.ListenAndServe()
-	if err != nil {
+	done := make(chan os.Signal, 1)
+	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+	go func() {
+		if err = s.ListenAndServe(); err != nil {
+			log.Fatalln(err)
+		}
+	}()
+	<-done
+	if err := s.Close(); err != nil {
 		log.Fatalln(err)
 	}
 }
 
 func teaHandler() func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
 	return func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-		if s.RawCommand() != "" {
-			fmt.Println("trying to execute commands, skipping")
-			s.Exit(1)
-			return nil, nil
-		}
-		_, _, active := s.Pty()
-		if !active {
-			fmt.Println("no active terminal, skipping")
-			s.Exit(1)
-			return nil, nil
-		}
-
 		var m tea.Model
 		switch *effect {
 		case "confetti":
