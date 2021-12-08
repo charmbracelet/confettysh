@@ -39,9 +39,4 @@ require (
 	google.golang.org/protobuf v1.26.0-rc.1 // indirect
 )
 
-<<<<<<< HEAD
-replace github.com/charmbracelet/wish => ../wish
-
-=======
->>>>>>> 2f5f155 (feat: update stuff)
 replace github.com/charmbracelet/promwish => ../promwish
