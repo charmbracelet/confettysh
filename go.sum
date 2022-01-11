@@ -38,6 +38,8 @@ github.com/charmbracelet/promwish v0.1.0 h1:zT6M5grbphtivS1ceixGpN3oLlavS6E1IRq1
 github.com/charmbracelet/promwish v0.1.0/go.mod h1:kqVLnrgXX10q6vtWzgYUTPB0MsrbW7SLQlAu5qAVb64=
 github.com/charmbracelet/wish v0.1.1 h1:BLsUBlHzIxw5ebzmBzxUUMfakdteew6gQOhudhsLKpM=
 github.com/charmbracelet/wish v0.1.1/go.mod h1:tD+sb5aS1SSX0t7hIZXXUonv2YbnFNCnU6qfOolKKUE=
+github.com/charmbracelet/wishlist v0.1.0 h1:xMyYPj7akq3ZlrsUApJHtFs2U56gB/3HWVicnGvOXZM=
+github.com/charmbracelet/wishlist v0.1.0/go.mod h1:6xfBbXJhkx2Qtvjc96mdHmTpdefTnyz/ctqaMMgvrt4=
 github.com/containerd/console v1.0.1/go.mod h1:XUsP6YE/mKtz6bxc+I8UiKKTP04qjQL4qcS3XoQ5xkw=
 github.com/containerd/console v1.0.2/go.mod h1:ytZPjGgY2oeTkAONYafi2kSj0aYggsf8acV1PGKCbzQ=
 github.com/containerd/console v1.0.3 h1:lIr7SlA5PxZyMV30bDW0MGbiOPXwc63yRuCP0ARubLw=

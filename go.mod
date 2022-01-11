@@ -6,7 +6,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.19.2
 	github.com/charmbracelet/promwish v0.1.0
 	github.com/charmbracelet/wish v0.1.1
-	github.com/charmbracelet/wishlist v0.0.0-00010101000000-000000000000
+	github.com/charmbracelet/wishlist v0.1.0
 	github.com/gliderlabs/ssh v0.3.3
 	github.com/maaslalani/confetty v0.0.0-20211105043600-c1f984adc7d6
 	github.com/prometheus/client_golang v1.11.0
