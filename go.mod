@@ -44,5 +44,3 @@ require (
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	google.golang.org/protobuf v1.26.0-rc.1 // indirect
 )
-
-replace github.com/charmbracelet/wishlist => ../wishlist

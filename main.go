@@ -18,8 +18,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-var port = flag.Int("port", 2222, "port to listen on")
-var metricsPort = flag.Int("metrics-port", 9222, "port to listen on")
+var (
+	port        = flag.Int("port", 2222, "port to listen on")
+	metricsPort = flag.Int("metrics-port", 9222, "port to listen on")
+)
 
 const (
 	effectConfetti  = "confetti"
