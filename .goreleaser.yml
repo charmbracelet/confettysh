@@ -58,9 +58,6 @@ brews:
     homepage: "https://charm.sh/"
     description: "Confetti over SSH"
 
-signs:
-  - artifacts: checksum
-
 checksum:
   name_template: "checksums.txt"
 snapshot:
