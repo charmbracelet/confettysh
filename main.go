@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"runtime/debug"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/promwish"
@@ -31,6 +32,12 @@ const (
 
 func main() {
 	flag.Parse()
+
+	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Sum != "" {
+		log.Printf("Running confettysh %s", info.Main.Version)
+	} else {
+		log.Printf("Running confettysh devel")
+	}
 
 	go promwish.Listen(fmt.Sprintf("0.0.0.0:%d", *metricsPort))
 
