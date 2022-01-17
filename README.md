@@ -15,7 +15,7 @@ ssh -p2222 localhost -t fireworks
 
 ## Acknowledgments
 
-This project uses [Maas Lalani's](https://github.com/maaslalani) excelent [confetty](https://github.com/maaslalani/confetty) project.
+This project uses [Maas Lalani's](https://github.com/maaslalani) excellent [confetty](https://github.com/maaslalani/confetty) project.
 
 ## Feedback
 
