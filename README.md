@@ -15,14 +15,15 @@ ssh -p2222 localhost -t fireworks
 
 ## Acknowledgments
 
-This project uses [Maas Lalani's](https://github.com/maaslalani) excellent [confetty](https://github.com/maaslalani/confetty) project.
+This project provides an SSH interface to [Maas Lalani’s](https://github.com/maaslalani) excellent [confeTTY](https://github.com/maaslalani/confetty) project.
 
 ## Feedback
 
-We'd love to hear your thoughts on this tutorial. Feel free to drop us a note!
+Thoughts? Questions? We love hearing from you. Feel free to drop us a note!
 
 * [Twitter](https://twitter.com/charmcli)
 * [The Fediverse](https://mastodon.technology/@charm)
+* [Slack](https://charm.sh)
 
 ## License
 
