@@ -33,11 +33,11 @@ const (
 func main() {
 	flag.Parse()
 
+	version := "devel"
 	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Sum != "" {
-		log.Printf("Running confettysh %s", info.Main.Version)
-	} else {
-		log.Printf("Running confettysh devel")
+		version = info.Main.Version
 	}
+	log.Printf("Running confettysh %s", version)
 
 	go promwish.Listen(fmt.Sprintf("0.0.0.0:%d", *metricsPort))
 
@@ -91,8 +91,6 @@ func teaHandler(effect string) func(s ssh.Session) (tea.Model, []tea.ProgramOpti
 			m = confetti.InitialModel()
 		case effectFireworks:
 			m = fireworks.InitialModel()
-		default:
-			log.Fatalf("invalid effect %q", effect)
 		}
 
 		return m, []tea.ProgramOption{tea.WithAltScreen()}
