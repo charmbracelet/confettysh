@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"runtime/debug"
+	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/promwish"
@@ -46,6 +47,7 @@ func main() {
 		Factory: func(e wishlist.Endpoint) (*ssh.Server, error) {
 			return wish.NewServer(
 				wish.WithAddress(e.Address),
+				wish.WithHostKeyPath(fmt.Sprintf(".ssh/%s", strings.ToLower(e.Name))),
 				wish.WithMiddleware(
 					append(
 						e.Middlewares,
@@ -63,13 +65,13 @@ func main() {
 		},
 		Endpoints: []*wishlist.Endpoint{
 			{
-				Name: effectConfetti,
+				Name: strings.Title(effectConfetti),
 				Middlewares: []wish.Middleware{
 					bm.Middleware(teaHandler(effectConfetti)),
 				},
 			},
 			{
-				Name: effectFireworks,
+				Name: strings.Title(effectFireworks),
 				Middlewares: []wish.Middleware{
 					bm.Middleware(teaHandler(effectFireworks)),
 				},
