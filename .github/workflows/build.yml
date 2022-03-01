@@ -27,9 +27,8 @@ jobs:
 
       - name: Test
         run: go test -v -cover -timeout=30s ./...
-  nightly:
-    uses: charmbracelet/meta/.github/workflows/nightly.yml@main
+
+  snapshot:
+    uses: charmbracelet/meta/.github/workflows/snapshot.yml@main
     secrets:
-      docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
       goreleaser_key: ${{ secrets.GORELEASER_KEY }}
