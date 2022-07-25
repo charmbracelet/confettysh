@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"runtime/debug"
@@ -18,12 +17,13 @@ import (
 	"github.com/maaslalani/confetty/confetti"
 	"github.com/maaslalani/confetty/fireworks"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/spf13/pflag"
 )
 
 // nolint: gomnd
 var (
-	port        = flag.Int("port", 2222, "port to listen on")
-	metricsPort = flag.Int("metrics-port", 9222, "port to listen on")
+	port        = pflag.Int("port", 2222, "port to listen on")
+	metricsPort = pflag.Int("metrics-port", 9222, "port to listen on")
 )
 
 const (
@@ -32,7 +32,7 @@ const (
 )
 
 func main() {
-	flag.Parse()
+	pflag.Parse()
 
 	version := "devel"
 	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Sum != "" {

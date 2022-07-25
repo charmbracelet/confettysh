@@ -10,6 +10,7 @@ require (
 	github.com/gliderlabs/ssh v0.3.3
 	github.com/maaslalani/confetty v0.0.0-20211105043600-c1f984adc7d6
 	github.com/prometheus/client_golang v1.11.0
+	github.com/spf13/pflag v1.0.5
 )
 
 require (
