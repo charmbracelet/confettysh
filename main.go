@@ -65,13 +65,13 @@ func main() {
 		},
 		Endpoints: []*wishlist.Endpoint{
 			{
-				Name: strings.Title(effectConfetti),
+				Name: "Confetti",
 				Middlewares: []wish.Middleware{
 					bm.Middleware(teaHandler(effectConfetti)),
 				},
 			},
 			{
-				Name: strings.Title(effectFireworks),
+				Name: "Fireworks",
 				Middlewares: []wish.Middleware{
 					bm.Middleware(teaHandler(effectFireworks)),
 				},
