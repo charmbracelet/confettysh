@@ -19,11 +19,11 @@ This project provides an SSH interface to [Maas Lalani’s](https://github.com/m
 
 ## Feedback
 
-Thoughts? Questions? We love hearing from you. Feel free to drop us a note!
+We’d love to hear your thoughts on this project. Feel free to drop us a note!
 
 * [Twitter](https://twitter.com/charmcli)
-* [The Fediverse](https://mastodon.technology/@charm)
-* [Slack](https://charm.sh)
+* [The Fediverse](https://mastodon.social/@charmcli)
+* [Discord](https://charm.sh/chat)
 
 ## License
 
