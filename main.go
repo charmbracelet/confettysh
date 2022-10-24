@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+	"net"
 	"runtime/debug"
+	"strconv"
 	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -22,6 +24,7 @@ import (
 
 // nolint: gomnd
 var (
+	listen      = pflag.String("listen", "localhost", "address to listen to")
 	port        = pflag.Int("port", 2222, "port to listen on")
 	metricsPort = pflag.Int("metrics-port", 9222, "port to listen on")
 )
@@ -40,10 +43,11 @@ func main() {
 	}
 	log.Printf("Running confettysh %s", version)
 
-	go promwish.Listen(fmt.Sprintf("0.0.0.0:%d", *metricsPort))
+	go promwish.Listen(net.JoinHostPort(*listen, strconv.Itoa(*metricsPort)))
 
 	cfg := &wishlist.Config{
-		Port: int64(*port),
+		Listen: *listen,
+		Port:   int64(*port),
 		Factory: func(e wishlist.Endpoint) (*ssh.Server, error) {
 			return wish.NewServer(
 				wish.WithAddress(e.Address),
