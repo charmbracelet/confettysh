@@ -4,9 +4,9 @@ go 1.18
 
 require (
 	github.com/charmbracelet/bubbletea v0.22.2-0.20221016150627-cbe309d6241c
-	github.com/charmbracelet/promwish v0.2.0
-	github.com/charmbracelet/wish v0.5.0
-	github.com/charmbracelet/wishlist v0.7.0
+	github.com/charmbracelet/promwish v0.3.0
+	github.com/charmbracelet/wish v0.6.0
+	github.com/charmbracelet/wishlist v0.8.0
 	github.com/gliderlabs/ssh v0.3.5
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
 	github.com/prometheus/client_golang v1.13.0
@@ -20,7 +20,7 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/caarlos0/sshmarshal v0.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
-	github.com/charmbracelet/bubbles v0.13.0 // indirect
+	github.com/charmbracelet/bubbles v0.14.0 // indirect
 	github.com/charmbracelet/harmonica v0.2.0 // indirect
 	github.com/charmbracelet/keygen v0.3.0 // indirect
 	github.com/charmbracelet/lipgloss v0.6.0 // indirect
