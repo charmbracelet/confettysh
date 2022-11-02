@@ -9,7 +9,7 @@ require (
 	github.com/charmbracelet/wishlist v0.8.0
 	github.com/gliderlabs/ssh v0.3.5
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
-	github.com/prometheus/client_golang v1.13.0
+	github.com/prometheus/client_golang v1.13.1
 	github.com/spf13/pflag v1.0.5
 )
 
