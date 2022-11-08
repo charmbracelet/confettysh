@@ -9,7 +9,7 @@ require (
 	github.com/charmbracelet/wishlist v0.8.0
 	github.com/gliderlabs/ssh v0.3.5
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
-	github.com/prometheus/client_golang v1.13.1
+	github.com/prometheus/client_golang v1.14.0
 	github.com/spf13/pflag v1.0.5
 )
 
@@ -39,7 +39,7 @@ require (
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/muesli/reflow v0.3.0 // indirect
 	github.com/muesli/termenv v0.13.0 // indirect
-	github.com/prometheus/client_model v0.2.0 // indirect
+	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/rivo/uniseg v0.4.2 // indirect
