@@ -58,8 +58,8 @@ github.com/cespare/xxhash/v2 v2.1.2/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XL
 github.com/charmbracelet/bubbles v0.14.0 h1:DJfCwnARfWjZLvMglhSQzo76UZ2gucuHPy9jLWX45Og=
 github.com/charmbracelet/bubbles v0.14.0/go.mod h1:bbeTiXwPww4M031aGi8UK2HT9RDWoiNibae+1yCMtcc=
 github.com/charmbracelet/bubbletea v0.21.0/go.mod h1:GgmJMec61d08zXsOhqRC/AiOx4K4pmz+VIcRIm1FKr4=
-github.com/charmbracelet/bubbletea v0.22.2-0.20221016150627-cbe309d6241c h1:pIUO+t+apSfbM0QBWokE8TeeE2WkEkMqKq2LNjhS9d8=
-github.com/charmbracelet/bubbletea v0.22.2-0.20221016150627-cbe309d6241c/go.mod h1:JAfGK/3/pPKHTnAS8JIE2u9f61BjWTQY57RbT25aMXU=
+github.com/charmbracelet/bubbletea v0.23.1 h1:CYdteX1wCiCzKNUlwm25ZHBIc1GXlYFyUIte8WPvhck=
+github.com/charmbracelet/bubbletea v0.23.1/go.mod h1:JAfGK/3/pPKHTnAS8JIE2u9f61BjWTQY57RbT25aMXU=
 github.com/charmbracelet/harmonica v0.2.0 h1:8NxJWRWg/bzKqqEaaeFNipOu77YR5t8aSwG4pgaUBiQ=
 github.com/charmbracelet/harmonica v0.2.0/go.mod h1:KSri/1RMQOZLbw7AHqgcBycp8pgJnQMYYT8QZRqZ1Ao=
 github.com/charmbracelet/keygen v0.3.0 h1:mXpsQcH7DDlST5TddmXNXjS0L7ECk4/kLQYyBcsan2Y=
@@ -69,8 +69,8 @@ github.com/charmbracelet/lipgloss v0.6.0 h1:1StyZB9vBSOyuZxQUcUwGr17JmojPNm87ini
 github.com/charmbracelet/lipgloss v0.6.0/go.mod h1:tHh2wr34xcHjC2HCXIlGSG1jaDF0S0atAUvBMP6Ppuk=
 github.com/charmbracelet/promwish v0.3.0 h1:qRIwx1GgPwIXanf868lEPZ4pQ6NT0ltaZJw+lkiok20=
 github.com/charmbracelet/promwish v0.3.0/go.mod h1:Qxm2h8DDuCR4SLoOM4+O1O67gKCsM5GovAHT7makJvU=
-github.com/charmbracelet/wish v0.6.0 h1:njygCS/bXIZfa3zf+BjzXI64islPRON81onHhuTpPso=
-github.com/charmbracelet/wish v0.6.0/go.mod h1:LgsszaPfplsjqqXATWqe/MJSkY1LCxUGecmIHFQ1n20=
+github.com/charmbracelet/wish v0.7.0 h1:rdfacCWaKCQpCMPbOKfi68GYqsb+9CnUzN1Ov/INZJ0=
+github.com/charmbracelet/wish v0.7.0/go.mod h1:16EQz7k3hEgPkPENghcpEddvlrmucIudE0jnczKr+k4=
 github.com/charmbracelet/wishlist v0.8.0 h1:soeKg3mhgGhumB8Ul6fDJ4kupoc0XiNmJdsm69uZTz0=
 github.com/charmbracelet/wishlist v0.8.0/go.mod h1:1XESysDQDEG0NuG3tO6p8x+0DV8QNOC0evzOZKUggBQ=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=

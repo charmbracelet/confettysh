@@ -3,9 +3,9 @@ module github.com/charmbracelet/confettysh
 go 1.18
 
 require (
-	github.com/charmbracelet/bubbletea v0.22.2-0.20221016150627-cbe309d6241c
+	github.com/charmbracelet/bubbletea v0.23.1
 	github.com/charmbracelet/promwish v0.3.0
-	github.com/charmbracelet/wish v0.6.0
+	github.com/charmbracelet/wish v0.7.0
 	github.com/charmbracelet/wishlist v0.8.0
 	github.com/gliderlabs/ssh v0.3.5
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
