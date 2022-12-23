@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/charmbracelet/bubbletea v0.23.1
-	github.com/charmbracelet/promwish v0.3.0
+	github.com/charmbracelet/promwish v0.5.0
 	github.com/charmbracelet/wish v1.0.0
 	github.com/charmbracelet/wishlist v0.8.0
 	github.com/gliderlabs/ssh v0.3.5
@@ -46,9 +46,9 @@ require (
 	github.com/rivo/uniseg v0.4.2 // indirect
 	github.com/sahilm/fuzzy v0.1.0 // indirect
 	github.com/teivah/broadcast v0.1.0 // indirect
-	golang.org/x/crypto v0.3.0 // indirect
-	golang.org/x/sys v0.2.0 // indirect
-	golang.org/x/term v0.2.0 // indirect
-	golang.org/x/text v0.4.0 // indirect
+	golang.org/x/crypto v0.4.0 // indirect
+	golang.org/x/sys v0.3.0 // indirect
+	golang.org/x/term v0.3.0 // indirect
+	golang.org/x/text v0.5.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
