@@ -5,9 +5,9 @@ go 1.18
 require (
 	github.com/charmbracelet/bubbletea v0.23.1
 	github.com/charmbracelet/promwish v0.5.0
+	github.com/charmbracelet/ssh v0.0.0-20221117183211-483d43d97103
 	github.com/charmbracelet/wish v1.0.0
 	github.com/charmbracelet/wishlist v0.8.0
-	github.com/gliderlabs/ssh v0.3.5
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
 	github.com/prometheus/client_golang v1.14.0
 	github.com/spf13/pflag v1.0.5
@@ -24,8 +24,8 @@ require (
 	github.com/charmbracelet/harmonica v0.2.0 // indirect
 	github.com/charmbracelet/keygen v0.3.0 // indirect
 	github.com/charmbracelet/lipgloss v0.6.0 // indirect
-	github.com/charmbracelet/ssh v0.0.0-20221117183211-483d43d97103 // indirect
 	github.com/containerd/console v1.0.3 // indirect
+	github.com/gliderlabs/ssh v0.3.5 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect

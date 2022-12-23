@@ -10,12 +10,12 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/promwish"
+	"github.com/charmbracelet/ssh"
 	"github.com/charmbracelet/wish"
 	"github.com/charmbracelet/wish/activeterm"
 	bm "github.com/charmbracelet/wish/bubbletea"
 	lm "github.com/charmbracelet/wish/logging"
 	"github.com/charmbracelet/wishlist"
-	"github.com/gliderlabs/ssh"
 	"github.com/maaslalani/confetty/confetti"
 	"github.com/maaslalani/confetty/fireworks"
 	"github.com/prometheus/client_golang/prometheus"
