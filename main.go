@@ -60,6 +60,7 @@ func main() {
 							prometheus.Labels{
 								"app": e.Name,
 							},
+							promwish.DefaultCommandFn,
 						),
 						lm.Middleware(),
 						activeterm.Middleware(),
