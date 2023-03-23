@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/promwish v0.5.0
 	github.com/charmbracelet/ssh v0.0.0-20221117183211-483d43d97103
 	github.com/charmbracelet/wish v1.1.0
-	github.com/charmbracelet/wishlist v0.9.0
+	github.com/charmbracelet/wishlist v0.10.0
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
 	github.com/prometheus/client_golang v1.14.0
 	github.com/spf13/pflag v1.0.5
@@ -24,7 +24,7 @@ require (
 	github.com/charmbracelet/harmonica v0.2.0 // indirect
 	github.com/charmbracelet/keygen v0.3.0 // indirect
 	github.com/charmbracelet/lipgloss v0.7.1 // indirect
-	github.com/charmbracelet/log v0.1.2 // indirect
+	github.com/charmbracelet/log v0.2.0 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
