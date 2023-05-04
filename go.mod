@@ -4,10 +4,10 @@ go 1.18
 
 require (
 	github.com/charmbracelet/bubbletea v0.23.2
-	github.com/charmbracelet/promwish v0.5.0
+	github.com/charmbracelet/promwish v0.6.0
 	github.com/charmbracelet/ssh v0.0.0-20221117183211-483d43d97103
 	github.com/charmbracelet/wish v1.1.1
-	github.com/charmbracelet/wishlist v0.10.0
+	github.com/charmbracelet/wishlist v0.11.0
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
 	github.com/prometheus/client_golang v1.15.1
 	github.com/spf13/pflag v1.0.5
