@@ -26,8 +26,8 @@ github.com/charmbracelet/ssh v0.0.0-20221117183211-483d43d97103 h1:wpHMERIN0pQZE
 github.com/charmbracelet/ssh v0.0.0-20221117183211-483d43d97103/go.mod h1:0Vm2/8yBljiLDnGJHU8ehswfawrEybGk33j5ssqKQVM=
 github.com/charmbracelet/wish v1.2.0 h1:h5Wj9pr97IQz/l4gM5Xep2lXcY/YM+6O2RC2o3x0JIQ=
 github.com/charmbracelet/wish v1.2.0/go.mod h1:JX3fC+178xadJYAhPu6qWtVDpJTwpnFvpdjz9RKJlUE=
-github.com/charmbracelet/wishlist v0.13.0 h1:54OVMQIyOAlXfECF/8JhPSezakiiHHFMUgo+IrhY4FU=
-github.com/charmbracelet/wishlist v0.13.0/go.mod h1:0iANoWRu8hF+0Ne+N77B47iaxR1pZ7/I1i4/RFo1G2A=
+github.com/charmbracelet/wishlist v0.14.0 h1:dvqUdbZJ7giV0VmFZFKtAQa7OU3CGc8hDlN2l/HXQVg=
+github.com/charmbracelet/wishlist v0.14.0/go.mod h1:lZwnxJ07zb4B8Otfym4zJck4DldkCcqb52frkV+JrNY=
 github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 h1:q2hJAaP1k2wIvVRd/hEHD7lacgqrCPS+k8g1MndzfWY=
 github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81/go.mod h1:YynlIjWYF8myEu6sdkwKIvGQq+cOckRm6So2avqoYAk=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
