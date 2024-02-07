@@ -49,6 +49,7 @@ func main() {
 		Listen: *listen,
 		Port:   int64(*port),
 		Factory: func(e wishlist.Endpoint) (*ssh.Server, error) {
+			// nolint: wrapcheck
 			return wish.NewServer(
 				wish.WithAddress(e.Address),
 				wish.WithHostKeyPath(fmt.Sprintf(".ssh/%s", strings.ToLower(e.Name))),

@@ -14,22 +14,17 @@ issues:
 
 linters:
   enable:
-    # - dupl
     - exhaustive
-    # - exhaustivestruct
     - goconst
     - godot
     - godox
     - gomnd
     - gomoddirectives
     - goprintffuncname
-    - ifshort
-    # - lll
     - misspell
     - nakedret
     - nestif
     - noctx
-    - nolintlint
     - prealloc
     - wrapcheck
 
