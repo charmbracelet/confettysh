@@ -92,7 +92,7 @@ func main() {
 }
 
 func teaHandler(effect string) func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
-	return func(s ssh.Session) (tea.Model, []tea.ProgramOption) {
+	return func(_ ssh.Session) (tea.Model, []tea.ProgramOption) {
 		var m tea.Model
 		switch effect {
 		case effectConfetti:
