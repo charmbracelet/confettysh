@@ -9,7 +9,7 @@ require (
 	github.com/charmbracelet/wish v1.4.0
 	github.com/charmbracelet/wishlist v0.14.1
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
-	github.com/prometheus/client_golang v1.19.0
+	github.com/prometheus/client_golang v1.19.1
 	github.com/spf13/pflag v1.0.5
 )
 
@@ -52,5 +52,5 @@ require (
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/term v0.20.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	google.golang.org/protobuf v1.32.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )
