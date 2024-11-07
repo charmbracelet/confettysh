@@ -3,7 +3,7 @@ module github.com/charmbracelet/confettysh
 go 1.18
 
 require (
-	github.com/charmbracelet/bubbletea v1.1.2
+	github.com/charmbracelet/bubbletea v1.2.0
 	github.com/charmbracelet/promwish v0.7.0
 	github.com/charmbracelet/ssh v0.0.0-20240725163421-eb71b85b27aa
 	github.com/charmbracelet/wish v1.4.3
@@ -22,9 +22,9 @@ require (
 	github.com/charmbracelet/bubbles v0.18.0 // indirect
 	github.com/charmbracelet/harmonica v0.2.0 // indirect
 	github.com/charmbracelet/keygen v0.5.1 // indirect
-	github.com/charmbracelet/lipgloss v0.13.0 // indirect
+	github.com/charmbracelet/lipgloss v1.0.0 // indirect
 	github.com/charmbracelet/log v0.4.0 // indirect
-	github.com/charmbracelet/x/ansi v0.4.0 // indirect
+	github.com/charmbracelet/x/ansi v0.4.5 // indirect
 	github.com/charmbracelet/x/conpty v0.1.0 // indirect
 	github.com/charmbracelet/x/errors v0.0.0-20240508181413-e8d8b6e2de86 // indirect
 	github.com/charmbracelet/x/input v0.2.0 // indirect
