@@ -1,3 +1,4 @@
+// Package main provides confettysh.
 package main
 
 import (
@@ -22,11 +23,10 @@ import (
 	"github.com/spf13/pflag"
 )
 
-// nolint: gomnd
 var (
 	listen      = pflag.String("listen", "localhost", "address to listen to")
-	port        = pflag.Int("port", 2222, "port to listen on")
-	metricsPort = pflag.Int("metrics-port", 9222, "port to listen on")
+	port        = pflag.Int("port", 2222, "port to listen on")         //nolint:mnd
+	metricsPort = pflag.Int("metrics-port", 9222, "port to listen on") //nolint:mnd
 )
 
 const (
@@ -49,7 +49,6 @@ func main() {
 		Listen: *listen,
 		Port:   int64(*port),
 		Factory: func(e wishlist.Endpoint) (*ssh.Server, error) {
-			// nolint: wrapcheck
 			return wish.NewServer(
 				wish.WithAddress(e.Address),
 				wish.WithHostKeyPath(fmt.Sprintf(".ssh/%s", strings.ToLower(e.Name))),
