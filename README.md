@@ -17,6 +17,12 @@ ssh -p2222 localhost -t fireworks
 
 This project provides an SSH interface to [Maas Lalani’s](https://github.com/maaslalani) excellent [confeTTY](https://github.com/maaslalani/confetty) project.
 
+## Contributing
+
+See [contributing][contribute].
+
+[contribute]: https://github.com/charmbracelet/confettysh/contribute
+
 ## Feedback
 
 We’d love to hear your thoughts on this project. Feel free to drop us a note!
