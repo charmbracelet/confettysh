@@ -10,7 +10,7 @@ require (
 	github.com/charmbracelet/wishlist v0.15.2
 	github.com/maaslalani/confetty v0.0.0-20221018000235-14a6771b495b
 	github.com/prometheus/client_golang v1.23.0
-	github.com/spf13/pflag v1.0.6
+	github.com/spf13/pflag v1.0.7
 )
 
 require (
