@@ -1,5 +1,14 @@
 # confettysh
 
+## Installation
+
+```sh
+go install github.com/charmbracelet/confettysh@latest
+```
+
+
+## Usage
+
 Confetti and Fireworks over SSH.
 
 ```sh
